@@ -1,0 +1,57 @@
+.navbar-collapse {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.boxRed {
+    height: 50px;
+    background-color: rgba(255, 0, 0, 0.144);
+    color: brown;
+    padding: 12px 20px;
+    border-radius: 5px;
+    border: 1px solid rgba(168, 54, 54, 0.247);
+    /* display: none; */
+}
+
+.box-post {
+    border-radius: 10px;
+    min-height: 170px;
+    border: 1px solid gainsboro;
+    margin: 10px 100px;
+}
+
+.title {
+    margin: 20px 25px 7px;
+}
+
+strong {
+    margin-left: 25px;
+    color: gray;
+}
+
+.text{
+    margin: 10px 25px;
+}
+
+small {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -60px;
+    margin-right: 30px;
+    color: gray;
+    font-size: 13px;
+    font-family: sans-serif;
+}
+
+i {
+    margin: 3px 3px;
+}
+
+textarea {
+    height: 100px;
+}
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin: 45px 25px 0;
+}

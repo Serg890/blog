@@ -1,0 +1,159 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Angular Blog</a>
+  <div class="collapse navbar-collapse">
+    <form class="form-inline">
+      <button style="margin-right: 10px" *ngIf="blogStatus" class="btn btn-outline-success"
+        data-toggle="modal" data-target="#AddPost" type="button">Add Post</button>
+      <button *ngIf="!blogStatus" style="margin-right: 10px" class="btn btn-outline-success"
+        data-toggle="modal" data-target="#SingInModal" type="button">Sing in</button>
+      <button *ngIf="!blogStatus" class="btn btn-outline-info" data-toggle="modal"
+        data-target="#SingUpModal" type="button">Sing up</button>
+      <button style="margin-right: 10px" *ngIf="blogStatus" class="btn btn-outline-warning disabled"
+        type="button">{{this.name}}</button>
+      <button *ngIf="blogStatus" class="btn btn-outline-warning" type="button" (click)="singOut()">Sing
+        Out</button>
+    </form>
+  </div>
+</nav>
+
+<!-- Modal Add Post-->
+<div class="modal fade" id="AddPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Title:</label>
+            <input [(ngModel)]="titlePost" name="titlePost" type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Text:</label>
+            <textarea [(ngModel)]="textPost" name="textPost" class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" #closeModal>Close</button>
+        <button type="button" class="btn btn-success" (click)="addBlog()">Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Edit Post-->
+<div class="modal fade" id="editPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Title:</label>
+            <input [(ngModel)]="titlePost" name="titlePost" type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Text:</label>
+            <textarea [(ngModel)]="textPost" name="textPost" class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" #closeModal3>Close</button>
+        <button type="button" class="btn btn-success" (click)="savePost()">Edit post</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Sing in-->
+<div class="modal fade" id="SingInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sing In</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="email" class="form-control" [(ngModel)]="loginIn" name="loginIn">
+          </div>
+          <div class="form-group">
+            <label>Password:</label>
+            <input type="password" class="form-control" [(ngModel)]="passIn" name="passIn">
+          </div>
+        </form>
+        <p class="boxRed" *ngIf="check">Some input is empty</p>
+        <p class="boxRed" *ngIf="check1">Wrong password or email</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" #closeModal1>Close</button>
+        <button type="button" class="btn btn-success" (click)="submit()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Sing up-->
+
+<div class="modal fade" id="SingUpModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sing Up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Username:</label>
+            <input type="text" class="form-control" [(ngModel)]="userLogin" name="userLogin">
+          </div>
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="email" class="form-control" [(ngModel)]="userEmail" name="userEmail">
+          </div>
+          <div class="form-group">
+            <label>Password:</label>
+            <input type="password" class="form-control" [(ngModel)]="userPassword" name="userPassword">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" #closeModal2>Close</button>
+        <button type="button" class="btn btn-primary" (click)="addUser()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Post -->
+<div class="box-post" *ngFor="let ind of arrBlogs; let i=index">
+  <h5 class="title">{{ind.title}}</h5>
+  <strong>Posted by: {{ind.author}}</strong>
+  <p class="text">{{ind.text}}</p>
+  <small><i class="far fa-clock"></i>{{ind.date}}</small>
+  <div class="buttons" *ngIf="(ind.author === userSignet.login || userSignet.login === 'Admin' ? true : false) && blogStatus">
+  <button type="button"  class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editPost"
+    (click)="edit(i)">Edit</button>
+  <button type="button" class="btn btn-danger btn-sm" ng (click)="delete(i)">Delete</button>
+</div>          
+                              
+</div>
